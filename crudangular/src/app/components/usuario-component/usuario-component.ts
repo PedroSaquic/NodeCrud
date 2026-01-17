@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario-service';
 import { UsuarioModel } from '../../models/usuario-model';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-usuario-component',
@@ -17,7 +18,8 @@ export class UsuarioComponent implements OnInit{
   editando: boolean = false;
   idEditando: number | null = null;
 
-  constructor(private usuarioServicio: UsuarioService){} 
+  constructor(private usuarioServicio: UsuarioService,
+              private cdr: ChangeDetectorRef){} 
 
   ngOnInit(): void{
     this.getUsuarios();
@@ -27,6 +29,7 @@ export class UsuarioComponent implements OnInit{
   getUsuarios(): void{
     this.usuarioServicio.getUsuarios().subscribe(data =>{
       this.listaUsuarios = data;
+      this.cdr.detectChanges();
     })
   }
 

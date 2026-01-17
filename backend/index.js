@@ -42,7 +42,7 @@ app.put('/usuarios/:id', (req, res)=>{
 //DELETE
 app.delete('/usuarios/:id', (req, res)=>{
     const {id} = req.params;
-    db.query('DELETE * FROM usuarios WHERE id = ?', [id], (err, result)=>{
+    db.query('DELETE FROM usuarios WHERE id = ?', [id], (err, result)=>{
         if(err) return res.json(err);
         res.json(result);
     });
