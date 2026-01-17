@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UsuarioModel } from '../models/usuario-model';
 import { Observable } from 'rxjs';
-import { setThrowInvalidWriteToSignalError } from '@angular/core/primitives/signals';
 
 @Injectable({
   providedIn: 'root',
@@ -19,8 +18,8 @@ export class UsuarioService {
   }
 
   //Crear usuario
-  addUsuario(newUsuario: UsuarioModel): Observable <UsuarioModel>{
-    return this.http.post<UsuarioModel>(this.apiUrl, UsuarioModel)
+  addUsuario(newUsuario: UsuarioModel): Observable<UsuarioModel>{
+    return this.http.post<UsuarioModel>(this.apiUrl, newUsuario);
   }
 
   //Actualizar usuario existente
